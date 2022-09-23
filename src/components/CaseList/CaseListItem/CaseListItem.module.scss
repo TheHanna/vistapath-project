@@ -1,0 +1,29 @@
+@import 'src/styles/variables';
+
+.CaseListItem {
+  color: $dark-blue;
+  cursor: pointer;
+  padding: 1rem;
+  border-left: 1rem solid transparent;
+
+  &:hover,
+  &__selected_case {
+    box-shadow: $inset-shadow;
+    box-sizing: border-box;
+    border-color: $medium-pink;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &__case-name {
+    margin: 0;
+  }
+
+  &:nth-child(odd) {
+    background-color: $faded-pink;
+  }
+}

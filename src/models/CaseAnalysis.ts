@@ -6,11 +6,12 @@ import { AnnotatedImage } from "./AnnotatedImage";
 
 
 export interface CaseAnalysisOptions {
-  name: string;
+  name?: string;
   status?: CaseStatus;
   created?: Date;
   updated?: Date;
-  images?: AnnotatedImage[]
+  images?: AnnotatedImage[];
+  notes?: string;
 }
 
 export class CaseAnalysis {
@@ -20,13 +21,14 @@ export class CaseAnalysis {
   updated: string;
   status: CaseStatus = CaseStatus.OPENED;
   images: AnnotatedImage[] = [] as AnnotatedImage[];
+  notes: string = '';
 
-  constructor({ name, status, created, updated }: CaseAnalysisOptions) {
-    this.name = name;
-    this.status = status ?? this.status;
-    this.created = formatDistanceToNow(created ?? new Date());
-    this.updated = formatDistanceToNow(updated ?? new Date());
+  constructor(options?: CaseAnalysisOptions) {
     this.uuid = uuidv4();
+    this.name = options?.name ?? '';
+    this.status = options?.status ?? this.status;
+    this.created = formatDistanceToNow(options?.created ?? new Date());
+    this.updated = formatDistanceToNow(options?.updated ?? new Date());
   }
 
   static fromString = (value: string): CaseAnalysis => {
@@ -42,6 +44,9 @@ export class CaseAnalysis {
     return JSON.stringify(instance);
   }
 
+  static randomCaseName = (prefix: string = 'Case'): string =>
+    `${prefix} ${CaseAnalysis.randomCaseNumber()}`;
+
   private static randomCaseNumber = (): string =>
     Array.from({ length: 5 },
       () => getRandomInt(0, 9)).join('');
@@ -54,55 +59,5 @@ export class CaseAnalysis {
       return new CaseAnalysis({ name, status });
     });
 }
-
-export class CaseAnalysisCollection extends Array<CaseAnalysis> {
-  private static instance?: CaseAnalysisCollection;
-  
-  static getInstance(): CaseAnalysisCollection {
-    if (this.instance === undefined) {
-      this.instance = new CaseAnalysisCollection();
-    }
-    return this.instance;
-  }
-  
-  get activeInstance(): CaseAnalysisCollection {
-    return CaseAnalysisCollection.getInstance();
-  }
-  
-  findById = (uuid: string): CaseAnalysis | undefined =>
-    CaseAnalysisCollection.getInstance()
-      .find((c) => c.uuid === uuid ? c : null);
-
-  findIndexById = (uuid: string): number =>
-    CaseAnalysisCollection.getInstance()
-      .findIndex((c) => c.uuid === uuid)
-  
-  findAllByStatus = (status: CaseStatus): CaseAnalysis[] => {
-    return this.filter((value: CaseAnalysis) => value.status === status)
-  }
-
-  add = (caseAnalysis: CaseAnalysis[]) => {
-    this.push(...caseAnalysis);
-  }
-
-  update = (updatedCase: CaseAnalysis): void => {
-    const { uuid } = updatedCase;
-    const currentCase = this.findById(uuid);
-    const currentIndex = this.findIndexById(uuid);
-    const mergedCase = {...currentCase, ...(updatedCase as CaseAnalysis)};
-    CaseAnalysisCollection.getInstance()[currentIndex] = mergedCase;
-  }
-
-  cases = (): string[] => {
-    return CaseAnalysisCollection.getInstance().map(CaseAnalysis.toString)
-  }
-
-  lastIndex = (): number => CaseAnalysisCollection.getInstance().length - 1;
-
-  first = (): CaseAnalysis => this[0];
-
-  last = (): CaseAnalysis => this[this.lastIndex()]
-}
-
 
 export interface CaseUpdate extends Partial<CaseAnalysis> { }

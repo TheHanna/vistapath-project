@@ -1,17 +1,24 @@
 @import 'src/styles/variables';
 
 .AppHeader {
-  box-shadow: inset 0 0 9px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: $inset-shadow;
+  border-bottom: 1rem solid $faded-pink;
   display: flex;
+  align-items: center;
   grid-area: app-header;
+  justify-content: space-between;
   padding: 1rem;
+
+  &__logo {
+    align-self: stretch;
+  }
 
   &__title {
     color: $dark-blue;
     font-family: $open-sans;
     justify-self: left;
 
-    &--highlight {
+    &___highlight {
       color: $medium-pink;
     }
   }

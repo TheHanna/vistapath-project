@@ -7,18 +7,5 @@
                        "case-list  case-details";
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  
-  .AppHeader {
-    grid-area: app-header;
-  }
-  
-  .CaseList {
-    grid-area: case-list;
-  }
-  
-  .CaseDetail,
-  .NewCaseButton {
-    grid-area: case-details;
-  }
 }
 

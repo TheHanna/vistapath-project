@@ -1,46 +1,37 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
-import { AppStateContext } from '../../contexts/AppStateContext';
-import { CaseStatusAction, getNextActions, getNextStatus } from '../../models/CaseStatus';
-import { CaseDetailHeader } from '../CaseDetailHeader/CaseDetailHeader';
-import { CaseImageList } from '../CaseImageList/CaseImageList';
-import styles from './CaseDetail.module.scss';
+import React, { FC, useContext } from "react";
+import { AppStateContext } from "../../contexts/AppStateContext";
+import { CaseDetailHeader } from "./CaseDetailHeader/CaseDetailHeader";
+import { CaseDetailNotes } from "./CaseDetailNotes/CaseDetailNotes";
+import { CaseImageList } from "./CaseImageList/CaseImageList";
+import { CaseStatusTransition } from "./CaseStatusTransition/CaseStatusTransition";
+import { RemoveCaseButton } from "./CaseStatusTransition/RemoveCaseButton/RemoveCaseButton";
+import styles from "./CaseDetail.module.scss";
 
 export const CaseDetail: FC = () => {
   const { selectedCase, updateSelectedCase } = useContext(AppStateContext);
-  const [nextActions, setNextActions] = useState([] as CaseStatusAction[])
 
-  useEffect(() => {
-    if (selectedCase) {
-      const nextActionsForCase = getNextActions(selectedCase.status);
-      setNextActions(nextActionsForCase)
-    }
-  }, [selectedCase]);
-
-  if (selectedCase != null) {
-    const handleStatusChange = (action: CaseStatusAction): void => {
-      const update = { status: getNextStatus(action) }
-      updateSelectedCase(update);
-    }
-  
+  if (selectedCase) {
     return (
       <section className={styles.CaseDetail}>
         <CaseDetailHeader />
-        <CaseImageList />
+        <article className={styles.CaseDetail__body}>
+          <CaseDetailNotes selectedCase={selectedCase} updateSelectedCase={updateSelectedCase} />
+          <p>Images</p>
+          <CaseImageList />
+        </article>
         <footer className={styles.CaseDetail__footer}>
-          {nextActions?.map((action: CaseStatusAction) =>
-            <button id={action}
-                    name={action}
-                    value={action}
-                    key={action}
-                    onClick={() => handleStatusChange(action)}>
-              {action}
-            </button>
-          )}
+          <CaseStatusTransition
+              selectedCase={selectedCase}
+              updateSelectedCase={updateSelectedCase} />
+          <RemoveCaseButton />
         </footer>
       </section>
     );
   } else {
-    return <></>
+    return (
+      <section className={styles.CaseDetail__no_case_selected}>
+        <CaseDetailHeader />
+      </section>
+    );
   }
-  
 };

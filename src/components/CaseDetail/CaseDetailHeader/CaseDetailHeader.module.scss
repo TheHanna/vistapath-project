@@ -1,0 +1,66 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.CaseDetailHeader {
+  align-items: center;
+  background-color: $white;
+  box-shadow: $drop-shadow;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &__info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $medium-pink;
+    margin: 0 0 0 1rem;
+    flex: 1 1 0;
+  }
+
+  &__title_edit {
+    @include text-input;
+    color: $medium-pink;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    flex: 1 1 0;
+  }
+
+  &__no_case_selected {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: flex-end;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 0;
+    color: $medium-pink;
+    border: 3px solid $medium-pink;
+    width: 2rem;
+    height: 2rem;
+
+    &:hover {
+      color: $white;
+      background-color: $medium-pink;
+    }
+  }
+}

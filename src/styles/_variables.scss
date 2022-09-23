@@ -5,14 +5,22 @@ $dark-blue: #092348;
 $medium-pink: #AE076D;
 $faded-pink: rgba(174, 7, 109, 0.2);
 $white: #ffffff;
+$black: #000000;
+$rich-black: #010203;
+$shadow: rgba(0, 0, 0, 0.25);
 
-$opened: #048BA8;
-$submitted: gray;
-$updated: #F29E4C; 
-$approved: #3EC300;
-$rejected: #E4572E;
+$opened: #04728B;
+$submitted: #705F95;
+$updated: #EE851B; 
+$approved: #34A300;
+$rejected: #D9481C;
 
 // Fonts
 $open-sans: 'Open Sans', sans-serif;
 $poppins: 'Poppins', sans-serif;
 $roboto: 'Roboto', sans-serif;
+
+// Styles
+$drop-shadow: 0 0 12px 0 $shadow;
+$inset-shadow: inset 0 0 12px 0 $shadow;
+$input-bottom-border: inset 0 -6px 0 -0 $faded-pink;

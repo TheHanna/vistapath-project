@@ -4,7 +4,10 @@ import { CaseAnalysis, CaseUpdate } from "../models/CaseAnalysis";
 export interface AppState {
   cases: CaseAnalysis[];
   selectedCase?: CaseAnalysis;
-  selectCase: (newCase: CaseAnalysis) => void;
+  openCase: () => void;
+  addCase: (newCase: CaseAnalysis) => void;
+  removeCase: (deletedCase: CaseAnalysis) => void;
+  selectCase: (newCase?: CaseAnalysis) => void;
   updateSelectedCase: (caseUpdate?: CaseUpdate) => void;
 }
 

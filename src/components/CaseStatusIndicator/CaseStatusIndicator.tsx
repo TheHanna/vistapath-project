@@ -7,7 +7,7 @@ interface CaseStatusIndicatorProps {
   status: CaseStatus;
 }
 
-const CaseStatusIndicator: FC<CaseStatusIndicatorProps> = (props: CaseStatusIndicatorProps) => {
+export const CaseStatusIndicator: FC<CaseStatusIndicatorProps> = (props: CaseStatusIndicatorProps) => {
   const { status } = props;
   const statusClassName: string = cn(
     styles.CaseStatusIndicator,
@@ -15,10 +15,8 @@ const CaseStatusIndicator: FC<CaseStatusIndicatorProps> = (props: CaseStatusIndi
   )
   
   return (
-    <div className={statusClassName} data-testid="CaseStatusIndicator">
+    <div className={statusClassName}>
       {status}
     </div>
   )
 };
-
-export default CaseStatusIndicator;

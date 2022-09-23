@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+# VistaPath - Medical Lab Workflow System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
 
-## Available Scripts
+* [Node.js/npm](https://nodejs.org)
+* A desktop browser of your choice
 
-In the project directory, you can run:
+## Usage
 
-### `yarn start`
+To start the app, simply run the following two command in your terminal of choice:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+$ npm install
+$ npm start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This will start the development server at http://localhost:3000
 
-### `yarn test`
+### Opening a new Case
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use the Open New Case button to open a new case
 
-### `yarn build`
+![New case button shown](docs/images/screen_001.png "Opening a new case")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Goal
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Design a visually appealing and user-friendly medical lab workflow system.
 
-### `yarn eject`
+## Description
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The system shall provide a user interface, whereby a user can:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* initiate a case analysis workflow by creating a new case
+* upload images
+* annotate uploaded images
+* provide general notes about the case
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Cases must proceed through 3-5 statuses:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Opened
+* Submitted
+* Updated
+* Approved
+* Rejected
 
-## Learn More
+The user interface should provide a way to:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* view all currently created cases
+* filter them by their status
+* view and edit case details
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Flows
+
+### Primary
+
+```
+Opened -> Submitted -> Approved
+```
+
+### Optional
+
+```
+Opened -> Submitted -> Rejected -> Updated -> Approved
+```
+
+## Status Descriptions and Logic
+
+### Opened
+
+* Cases start in the Opened status.
+* Cases in the Opened status can be moved to the Submitted status.
+
+### Submitted
+
+* Cases in the Submitted status can be moved to the Approved or Rejected statuses
+
+### Updated
+
+* Cases in the Updated status can be moved to the Approved or Rejected statuses
+
+### Approved
+
+* Cases in the Approved status cannot have their details edited
+
+### Rejected
+
+* Cases in the Rejected status can be moved to the Updated status

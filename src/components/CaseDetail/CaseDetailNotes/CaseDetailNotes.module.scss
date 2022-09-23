@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.CaseDetailNotes {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+
+  &__notes {
+    @include text-input;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: $roboto;
+    color: $rich-black;
+  }
+}

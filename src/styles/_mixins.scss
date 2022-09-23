@@ -1,0 +1,37 @@
+@import 'variables';
+
+@mixin button(
+  $background-color: $white,
+  $text-color: $medium-pink,
+  $border-width: 1px,
+  $border-style: solid
+) {
+  appearance: none;
+  background-color: $background-color;
+  border-radius: 2rem;
+  border: $border-width $border-style $text-color;
+  color: $text-color;
+  cursor: pointer;
+  font-family: $open-sans;
+
+  &:hover {
+    background-color: $text-color;
+    color: $background-color;
+  }
+}
+
+@mixin text-input {
+  appearance: none;
+  border: 1px solid $faded-pink;
+  box-sizing: border-box;
+  box-shadow: $inset-shadow;
+  outline: none;
+  width: auto;
+  display: inline-block;
+  transition: box-shadow;
+
+  &:focus {
+    outline: 3px solid $medium-pink;
+    box-shadow: $inset-shadow, $input-bottom-border;
+  }
+}

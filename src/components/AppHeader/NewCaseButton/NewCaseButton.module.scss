@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.NewCaseButton {
+  @include button($white, $opened, 3px);
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-self: center;
+  max-width: 12rem;
+  padding: 1rem;
+}

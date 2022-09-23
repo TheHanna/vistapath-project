@@ -1,5 +1,5 @@
-# TBD
+# TODOS
 
-* Make sure drag and drop upload works
-* Add general notes
-  * Case-wide
+* Refactor App.tsx, it does a bit too much right now and is difficult to read
+* Better styling on CaseListFilter
+* Testing harness
