@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { AppState, AppStateContext } from '../../../contexts/AppStateContext';
 import { AnnotatedImage } from '../../../models/AnnotatedImage';
+import { CaseStatus } from '../../../models/CaseStatus';
 import { blobToBase64 } from '../../../utils/utils';
 import { CaseImageAnnotater } from '../CaseImageAnnotater/CaseImageAnnotater';
 import styles from './CaseImageList.module.scss';
@@ -59,14 +61,18 @@ export const CaseImageList: React.FC = () => {
         updateSelectedCase({ images });
       }
     }
+
+    const classes = selectedCase.status === CaseStatus.APPROVED
+      ? classNames(styles.CaseImageList__label___disabled, styles.CaseImageList__label)
+      : styles.CaseImageList__label;
   
     return (
       <>
       <div className={styles.CaseImageList}>
-        <label htmlFor="imageUpload" className={styles.CaseImageList__label}>
+        <label htmlFor="imageUpload" className={classes}>
           Upload Image
         </label>
-        <input className={styles.CaseImageList__input}
+        <input disabled={selectedCase.status === CaseStatus.APPROVED} className={styles.CaseImageList__input}
           multiple
           value={''}
           type="file"
@@ -92,6 +98,7 @@ export const CaseImageList: React.FC = () => {
       </div>
       {
         <CaseImageAnnotater image={selectedImage}
+          status={selectedCase.status}
           index={getIndex(selectedImage)}
           updateSelectedCase={updateSelectedCase}
           setSelectedImage={setSelectedImage as React.Dispatch<React.SetStateAction<AnnotatedImage>>} />

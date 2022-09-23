@@ -3,18 +3,21 @@ import React, { Dispatch, FC, SetStateAction, useContext } from 'react';
 import { AppStateContext } from '../../../contexts/AppStateContext';
 import { AnnotatedImage } from '../../../models/AnnotatedImage';
 import { CaseAnalysis, CaseUpdate } from '../../../models/CaseAnalysis';
+import { CaseStatus } from '../../../models/CaseStatus';
 import styles from './CaseImageAnnotater.module.scss';
 
 interface CaseImageAnnotaterProps {
   image?: AnnotatedImage;
   index: number;
+  status: CaseStatus;
   setSelectedImage: Dispatch<SetStateAction<AnnotatedImage>>
   updateSelectedCase: (caseUpdate?: CaseUpdate) => void;
 }
 
 export const CaseImageAnnotater: FC<CaseImageAnnotaterProps> = (props) => {
   const { selectedCase } = useContext(AppStateContext);
-  const { image, index, setSelectedImage, updateSelectedCase } = props;
+  const { image, index, status, setSelectedImage, updateSelectedCase } = props;
+  const isApproved = status === CaseStatus.APPROVED;
   const imgRef = React.createRef<HTMLImageElement>();
   const annotationRef = React.createRef<HTMLImageElement>();
 
@@ -50,14 +53,14 @@ export const CaseImageAnnotater: FC<CaseImageAnnotaterProps> = (props) => {
           alt="Original"
           key={"original"}
           className={styles.CaseImageAnnotater__original}
-          onClick={showMarkerArea}
+          onClick={() => !isApproved ? showMarkerArea() : null}
         />
         <img ref={annotationRef}
           src={image.annotated || image.original}
           alt="Annotated"
           key={"annotated"}
           className={styles.CaseImageAnnotater__annotated}
-          onClick={showMarkerArea}
+          onClick={() => !isApproved ? showMarkerArea() : null}
         />
       </div>
     </section>
