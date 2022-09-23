@@ -1,0 +1,51 @@
+@import 'src/styles/variables';
+
+.CaseImageList {
+  display: flex;
+  flex-flow: row;
+  background-color: $faded-pink;
+  border-radius: 1rem 1rem 0 0;
+  width: 100%;
+
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    align-items: center;
+    border: 2px dotted $medium-pink;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    font-family: $poppins;
+    height: 100px;
+    margin: 1rem 0 1rem 1rem;
+    text-align: center;
+    width: 100px;
+  }
+  
+  &__thumbnail_annotated {
+    margin: 1rem 0 0 1rem;
+    height: 100px;
+    object-fit: cover;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+ 
+  &__thumbnail {
+    margin: 1rem 0 0 1rem;
+    height: 100px;
+    object-fit: cover;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 0.5rem;
+  }
+
+  &__container {
+    position: relative;
+  }
+}

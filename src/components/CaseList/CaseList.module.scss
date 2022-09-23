@@ -1,0 +1,48 @@
+@import 'src/styles/variables';
+
+.CaseList {
+  border-radius: 1rem;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-flow: column;
+  grid-area: case-list;
+  margin: 1rem;
+  overflow-y: auto;
+
+  &__header {
+    align-items: center;
+    background-color: $medium-pink;
+    box-sizing: border-box;
+    color: $white;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  &__body {
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+  }
+
+  &__empty {
+    align-self: center;
+    color: $dark-blue;
+    justify-self: center;
+    text-align: center;
+    width: 100%;
+
+    > h2 {
+      color: $medium-pink;
+      margin-bottom: 0;
+    }
+  }
+
+  &__new {
+    color: $opened;
+    font-family: $poppins;
+    user-select: none;
+    cursor: pointer;
+  }
+}

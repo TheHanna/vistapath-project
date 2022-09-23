@@ -1,0 +1,16 @@
+.CaseDetail {
+  display: flex;
+  flex-flow: column;
+  margin: 1rem;
+  min-width: 50rem;
+
+  &__body {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__footer {
+    display: flex;
+    margin: 1rem;
+  }
+}
