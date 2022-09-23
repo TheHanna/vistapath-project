@@ -22,6 +22,42 @@ Use the Open New Case button to open a new case
 
 ![New case button shown](docs/images/screen_001.png "Opening a new case")
 
+### Naming a Case
+
+When you create a new case, you will be automatically prompted to name it. Just start typing and then press enter!
+
+![Naming your new case](docs/images/screen_002.png "Naming your new case")
+
+
+### Adding notes to a Case
+
+You can add generic text notes to a case. It saves automatically after you're done typing!
+
+![Adding notes to your new case](docs/images/screen_003.png "Adding notes to your new case")
+
+### Adding and annotating images
+
+You can add images by clicking the "Upload Image" button in the Case Detail pane. Once you've uploaded an image:
+
+* Click on the thumbnail to preview it at a larger size
+* Click on the preview to annotate it
+
+![Adding images with annotations to your new case](docs/images/screen_004.png "Adding images with annotations to your new case")
+
+### Changing the status of a Case
+
+You can update the status of a case using the buttons in the footer of the Case Detail pane (the Submit button can be seen in purple in the below screenshot)
+
+![Changing the status of a case](docs/images/screen_005.png "Changing the status of a case")
+
+### Approving, Reject, Deleting, and Closing
+
+Once a case is created and submitted, it can be Approved or Rejected
+
+* If Approved, that's it! You're done.
+* If Rejected, you can Update it with more notes and images
+
+![More case actions](docs/images/screen_006.png "More case actions")
 
 ## Goal
 
